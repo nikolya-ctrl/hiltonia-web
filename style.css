@@ -1,0 +1,822 @@
+/* ─────────────────────────────────────────
+   HILTONIA — style.css
+   ───────────────────────────────────────── */
+
+/* ── RESET & TOKENS ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --charcoal:     #1A1A1A;
+  --off-white:    #F7F5F2;
+  --sand:         #C9B99A;
+  --sand-hover:   #D4C4A8;
+  --forest:       #2D4A3E;
+  --forest-hover: #3D6354;
+  --mid:          #6B6660;
+  --light-bg:     #F0ECE6;
+  --border-line:  rgba(201, 185, 154, 0.35);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: var(--off-white);
+  color: var(--charcoal);
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+a { text-decoration: none; }
+
+/* ── TYPOGRAPHY HELPERS ── */
+.section-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sand);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  color: var(--charcoal);
+  line-height: 1.2;
+}
+
+.divider {
+  width: 60px;
+  height: 1px;
+  background: var(--sand);
+  margin: 2rem 0;
+}
+
+/* ── BUTTONS ── */
+.btn-primary {
+  display: inline-block;
+  padding: 0.9rem 2.5rem;
+  background: var(--sand);
+  color: var(--charcoal);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: background 0.3s, transform 0.2s;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary:hover {
+  background: var(--sand-hover);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  display: inline-block;
+  padding: 0.9rem 2.5rem;
+  border: 1px solid var(--sand);
+  color: var(--sand);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: background 0.3s, color 0.3s;
+}
+.btn-ghost:hover {
+  background: var(--sand);
+  color: var(--charcoal);
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 0.9rem 2.5rem;
+  border: 1px solid var(--charcoal);
+  color: var(--charcoal);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: background 0.3s, color 0.3s;
+}
+.btn-outline:hover {
+  background: var(--charcoal);
+  color: var(--off-white);
+}
+
+/* ─────────────────────────────────────────
+   NAVIGATION
+   ───────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 3rem;
+  transition: background 0.4s, padding 0.4s, border-color 0.4s;
+  border-bottom: 1px solid transparent;
+}
+
+nav.scrolled {
+  background: var(--off-white);
+  padding: 1rem 3rem;
+  border-bottom-color: var(--border-line);
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--off-white);
+  transition: color 0.4s;
+}
+nav.scrolled .nav-logo { color: var(--charcoal); }
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(247, 245, 242, 0.75);
+  transition: color 0.3s;
+}
+nav.scrolled .nav-links a { color: var(--mid); }
+.nav-links a:hover { color: var(--sand); }
+nav.scrolled .nav-links a:hover { color: var(--forest); }
+
+/* Burger (mobile) */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-burger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--off-white);
+  transition: background 0.4s, transform 0.3s;
+}
+nav.scrolled .nav-burger span { background: var(--charcoal); }
+.nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ─────────────────────────────────────────
+   HERO
+   ───────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 3rem 5rem;
+  overflow: hidden;
+}
+
+/* Placeholder background — replace with a real <img class="hero-img"> */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #1e2e28 0%, #2d4a3e 40%, #1a2e26 70%, #111 100%);
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 60% 30%, rgba(201,185,154,0.08) 0%, transparent 60%),
+    linear-gradient(to bottom, transparent 50%, rgba(15,15,15,0.65) 100%);
+}
+
+/* If using a real image, add this class to the <img> */
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-img + .hero-bg { display: none; } /* hide placeholder when real image present */
+
+.hero-stats {
+  position: absolute;
+  right: 3rem;
+  bottom: 9rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: right;
+}
+.stat-num {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--off-white);
+  line-height: 1;
+}
+.stat-label {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sand);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+.hero-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin-bottom: 1rem;
+}
+.hero-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 300;
+  line-height: 1.0;
+  color: var(--off-white);
+  letter-spacing: -0.01em;
+  margin-bottom: 2rem;
+}
+.hero-headline em {
+  font-style: italic;
+  color: rgba(247, 245, 242, 0.65);
+}
+.hero-sub {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+.hero-desc {
+  font-size: 0.85rem;
+  color: rgba(247, 245, 242, 0.6);
+  max-width: 300px;
+  line-height: 1.8;
+}
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2rem;
+  right: 3rem;
+  z-index: 2;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(247, 245, 242, 0.35);
+  writing-mode: vertical-rl;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.hero-scroll::before {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 50px;
+  background: rgba(201, 185, 154, 0.4);
+}
+
+/* ─────────────────────────────────────────
+   PROPERTIES
+   ───────────────────────────────────────── */
+#properties {
+  padding: 6rem 3rem;
+}
+
+.properties-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+  gap: 2rem;
+}
+.properties-desc {
+  font-size: 0.85rem;
+  color: var(--mid);
+  max-width: 280px;
+  line-height: 1.8;
+}
+
+.prop-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 3px;
+}
+
+.prop-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--forest);
+  /* each card has a min-height so it never collapses */
+  min-height: 260px;
+}
+.prop-card.large {
+  grid-row: span 2;
+  min-height: 540px;
+}
+
+/* Placeholder div — swap for <img class="prop-img" src="..." alt="..."> */
+.prop-placeholder {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s ease;
+}
+.prop-card:hover .prop-placeholder { transform: scale(1.04); }
+/* Same scale for real images */
+.prop-img {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s ease;
+}
+.prop-card:hover .prop-img { transform: scale(1.04); }
+
+.prop-badge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 2;
+  background: rgba(247, 245, 242, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(201, 185, 154, 0.3);
+  padding: 0.45rem 0.85rem;
+  font-size: 0.7rem;
+  color: var(--off-white);
+  letter-spacing: 0.04em;
+}
+
+.prop-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(15,15,15,0.88) 0%, rgba(15,15,15,0.1) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.75rem;
+  transition: background 0.3s;
+}
+
+.prop-type {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin-bottom: 0.4rem;
+}
+.prop-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--off-white);
+  line-height: 1.2;
+  margin-bottom: 0.35rem;
+}
+.prop-card.large .prop-name { font-size: 2.2rem; }
+.prop-location {
+  font-size: 0.75rem;
+  color: rgba(247, 245, 242, 0.55);
+  margin-bottom: 1rem;
+}
+.prop-location::before {
+  content: '↗ ';
+  font-size: 0.6rem;
+  color: var(--sand);
+}
+.prop-link {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sand);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s, transform 0.3s;
+  display: inline-block;
+}
+.prop-card:hover .prop-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.prop-footer {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* ─────────────────────────────────────────
+   BOOKING
+   ───────────────────────────────────────── */
+.booking-section {
+  background: var(--charcoal);
+  padding: 6rem 3rem;
+}
+.booking-section .section-label { color: var(--sand); }
+.booking-section .section-title { color: var(--off-white); }
+.booking-section .divider { background: var(--sand); }
+
+.booking-form { margin-top: 2.5rem; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  border: 1px solid rgba(201, 185, 154, 0.25);
+}
+
+.form-field {
+  padding: 1.2rem 1.5rem;
+  border-right: 1px solid rgba(201, 185, 154, 0.15);
+}
+.form-field:last-of-type { border-right: none; }
+
+.form-field label {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin-bottom: 0.5rem;
+}
+.form-field input,
+.form-field select {
+  background: none;
+  border: none;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--off-white);
+  width: 100%;
+  cursor: pointer;
+  /* Fix date input color on Chrome */
+  color-scheme: dark;
+}
+.form-field select option { background: var(--charcoal); }
+.form-field input::placeholder { color: rgba(247, 245, 242, 0.3); }
+
+.form-btn {
+  background: var(--sand);
+  border: none;
+  padding: 0 2.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  transition: background 0.3s;
+  white-space: nowrap;
+}
+.form-btn:hover { background: var(--sand-hover); }
+
+.booking-note {
+  margin-top: 1.25rem;
+  font-size: 0.75rem;
+  color: rgba(247, 245, 242, 0.3);
+}
+
+/* ─────────────────────────────────────────
+   LOCATIONS
+   ───────────────────────────────────────── */
+#locations {
+  padding: 6rem 3rem;
+}
+
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border-line);
+  margin-top: 3rem;
+}
+
+.location-card {
+  background: var(--off-white);
+  padding: 2.5rem 2rem;
+  transition: background 0.3s;
+  cursor: default;
+}
+.location-card:hover { background: #eee9e1; }
+
+.loc-num {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--border-line);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.loc-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin-bottom: 0.5rem;
+}
+.loc-sub {
+  font-size: 0.78rem;
+  color: var(--mid);
+  line-height: 1.75;
+}
+.loc-tag {
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--forest);
+  border-bottom: 1px solid var(--forest);
+  padding-bottom: 1px;
+}
+
+.location-cta {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  cursor: default;
+}
+.location-cta p {
+  font-size: 0.8rem;
+  color: var(--mid);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+/* ─────────────────────────────────────────
+   AMENITIES
+   ───────────────────────────────────────── */
+.amenities-section {
+  background: var(--light-bg);
+  padding: 6rem 3rem;
+}
+
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.amenity-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--sand);
+  margin-bottom: 1.5rem;
+}
+.amenity-name {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.amenity-desc {
+  font-size: 0.78rem;
+  color: var(--mid);
+  line-height: 1.8;
+}
+
+/* ─────────────────────────────────────────
+   CONTACT
+   ───────────────────────────────────────── */
+#contact {
+  padding: 6rem 3rem;
+}
+
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.contact-detail {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.contact-detail strong {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--mid);
+  font-weight: 400;
+}
+.contact-detail a,
+.contact-detail span {
+  font-size: 0.88rem;
+  color: var(--charcoal);
+}
+.contact-detail a { color: var(--forest); }
+.contact-detail a:hover { text-decoration: underline; }
+
+.contact-hours {
+  margin-top: 2rem;
+  font-size: 0.78rem;
+  color: var(--mid);
+  line-height: 2;
+}
+
+/* Contact form */
+.contact-form { display: flex; flex-direction: column; gap: 0; }
+
+.contact-field { margin-bottom: 1.75rem; }
+.contact-field label {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 0.6rem;
+}
+.contact-field input,
+.contact-field select,
+.contact-field textarea {
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border-line);
+  outline: none;
+  padding: 0.6rem 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--charcoal);
+  transition: border-color 0.3s;
+  resize: none;
+}
+.contact-field input:focus,
+.contact-field select:focus,
+.contact-field textarea:focus {
+  border-bottom-color: var(--forest);
+}
+.contact-field input::placeholder,
+.contact-field textarea::placeholder { color: rgba(107,102,96,0.5); }
+
+.contact-submit { margin-top: 0.5rem; cursor: pointer; }
+
+.form-status {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  min-height: 1.2em;
+  color: var(--forest);
+}
+.form-status.error { color: #b94040; }
+
+/* ─────────────────────────────────────────
+   FOOTER
+   ───────────────────────────────────────── */
+footer {
+  background: var(--charcoal);
+  color: rgba(247, 245, 242, 0.4);
+  padding: 2.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(247, 245, 242, 0.7);
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+.footer-links a {
+  font-size: 0.7rem;
+  color: rgba(247, 245, 242, 0.4);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--sand); }
+
+.footer-copy { font-size: 0.72rem; }
+
+/* ─────────────────────────────────────────
+   RESPONSIVE — TABLET (≤ 900px)
+   ───────────────────────────────────────── */
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 2rem; }
+  nav.scrolled { padding: 0.9rem 2rem; }
+
+  .nav-burger { display: flex; }
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--charcoal);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a {
+    font-size: 1.1rem;
+    color: var(--off-white);
+    letter-spacing: 0.15em;
+  }
+
+  .hero { padding: 0 2rem 4rem; }
+  .hero-stats { right: 2rem; bottom: 8rem; }
+
+  .properties-header { flex-direction: column; align-items: flex-start; }
+  #properties { padding: 5rem 2rem; }
+
+  .prop-grid { grid-template-columns: 1fr; }
+  .prop-card.large { grid-row: span 1; min-height: 360px; }
+  .prop-card { min-height: 260px; }
+
+  .booking-section { padding: 5rem 2rem; }
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  .form-field { border-right: none; border-bottom: 1px solid rgba(201,185,154,0.15); }
+  .form-btn { grid-column: span 2; padding: 1.2rem; }
+
+  #locations { padding: 5rem 2rem; }
+  .locations-grid { grid-template-columns: 1fr 1fr; }
+
+  .amenities-section { padding: 5rem 2rem; }
+  .amenities-grid { grid-template-columns: 1fr 1fr; }
+
+  #contact { padding: 5rem 2rem; }
+  .contact-inner { grid-template-columns: 1fr; gap: 4rem; }
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE — MOBILE (≤ 560px)
+   ───────────────────────────────────────── */
+@media (max-width: 560px) {
+  .hero-stats { display: none; }
+  .hero-sub { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+
+  .form-row { grid-template-columns: 1fr; }
+  .form-btn { grid-column: span 1; }
+
+  .locations-grid { grid-template-columns: 1fr; }
+
+  .amenities-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+  footer { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  .footer-links { flex-wrap: wrap; gap: 1.25rem; }
+}

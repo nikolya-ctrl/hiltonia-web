@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hiltonia — Premium Rentals in Sri Lanka</title>
+  <meta name="description" content="Handpicked apartments and villas across Sri Lanka's most breathtaking destinations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── NAVIGATION ── -->
+  <nav id="main-nav">
+    <a href="#home" class="nav-logo">Hiltonia</a>
+    <button class="nav-burger" id="nav-burger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#properties">Properties</a></li>
+      <li><a href="#locations">Locations</a></li>
+      <li><a href="#amenities">Amenities</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+
+    <!--
+      REPLACE hero-bg with a real image:
+      <img src="images/hero.jpg" alt="Hiltonia hero" class="hero-img" />
+      and remove .hero-bg from CSS
+    -->
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">12</span>
+        <span class="stat-label">Properties</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">5</span>
+        <span class="stat-label">Locations</span>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-label">Sri Lanka · Premium Rentals</p>
+      <h1 class="hero-headline">Where luxury<br><em>finds stillness</em></h1>
+      <div class="hero-sub">
+        <p class="hero-desc">Handpicked apartments and villas across Sri Lanka's most breathtaking destinations.</p>
+        <div class="hero-ctas">
+          <a href="#properties" class="btn-primary">View properties</a>
+          <a href="#booking" class="btn-ghost">Book a stay</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">Scroll</div>
+  </section>
+
+  <!-- ── PROPERTIES ── -->
+  <section id="properties">
+    <div class="properties-header">
+      <div>
+        <p class="section-label">Our collection</p>
+        <h2 class="section-title">Curated spaces,<br>remarkable settings</h2>
+      </div>
+      <p class="properties-desc">Each property is selected for its architecture, location, and the quality of stillness it offers.</p>
+    </div>
+
+    <div class="prop-grid">
+
+      <!-- ── CARD 1 (large, featured) ── -->
+      <article class="prop-card large">
+        <!--
+          Replace .prop-placeholder with:
+          <img src="images/palm-residence.jpg" alt="The Palm Residence" class="prop-img" />
+        -->
+        <div class="prop-placeholder" style="background: linear-gradient(135deg,#1a3a2e,#2d5a46,#0d2018);"></div>
+        <div class="prop-badge">From $280 / night</div>
+        <div class="prop-overlay">
+          <span class="prop-type">Villa · Beachfront</span>
+          <h3 class="prop-name">The Palm<br>Residence</h3>
+          <p class="prop-location">Mirissa, Southern Coast</p>
+          <a href="#booking" class="prop-link">Reserve →</a>
+        </div>
+      </article>
+
+      <!-- ── CARD 2 ── -->
+      <article class="prop-card">
+        <div class="prop-placeholder" style="background: linear-gradient(135deg,#2a3a4a,#3d5a6e,#1a2a38);"></div>
+        <div class="prop-badge">From $140 / night</div>
+        <div class="prop-overlay">
+          <span class="prop-type">Apartment · City</span>
+          <h3 class="prop-name">Galle Fort Loft</h3>
+          <p class="prop-location">Galle, Southern Province</p>
+          <a href="#booking" class="prop-link">Reserve →</a>
+        </div>
+      </article>
+
+      <!-- ── CARD 3 ── -->
+      <article class="prop-card">
+        <div class="prop-placeholder" style="background: linear-gradient(135deg,#3a2a1a,#5a4a2e,#2a1a0a);"></div>
+        <div class="prop-badge">From $195 / night</div>
+        <div class="prop-overlay">
+          <span class="prop-type">Villa · Hillside</span>
+          <h3 class="prop-name">Ella Canopy<br>Retreat</h3>
+          <p class="prop-location">Ella, Uva Province</p>
+          <a href="#booking" class="prop-link">Reserve →</a>
+        </div>
+      </article>
+
+      <!--
+        ADD MORE CARDS by duplicating an <article class="prop-card"> block above.
+        For a 4th large card: add class="prop-card large"
+      -->
+
+    </div>
+
+    <div class="prop-footer">
+      <a href="#contact" class="btn-outline">View all 12 properties</a>
+    </div>
+  </section>
+
+  <!-- ── BOOKING ── -->
+  <section class="booking-section" id="booking">
+    <div class="booking-inner">
+      <p class="section-label">Reserve your stay</p>
+      <h2 class="section-title">Book a property</h2>
+      <div class="divider"></div>
+
+      <form class="booking-form" id="booking-form">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="prop-select">Property</label>
+            <select id="prop-select" name="property" required>
+              <option value="" disabled selected>Select a property</option>
+              <option>The Palm Residence — Mirissa</option>
+              <option>Galle Fort Loft</option>
+              <option>Ella Canopy Retreat</option>
+              <option>Negombo Sea Villa</option>
+              <option>Colombo Skyline Suite</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="checkin">Check in</label>
+            <input type="date" id="checkin" name="checkin" required />
+          </div>
+          <div class="form-field">
+            <label for="checkout">Check out</label>
+            <input type="date" id="checkout" name="checkout" required />
+          </div>
+          <button type="submit" class="form-btn">Check availability</button>
+        </div>
+        <p class="booking-note">Instant confirmation · Free cancellation up to 48 hours before check-in</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── LOCATIONS ── -->
+  <section id="locations">
+    <p class="section-label">Where we are</p>
+    <h2 class="section-title">Five destinations<br>across the island</h2>
+
+    <div class="locations-grid">
+      <div class="location-card">
+        <span class="loc-num">01</span>
+        <h3 class="loc-name">Mirissa</h3>
+        <p class="loc-sub">Southern coast. Turquoise waters, whale watching, and beachfront tranquility.</p>
+        <span class="loc-tag">3 properties →</span>
+      </div>
+      <div class="location-card">
+        <span class="loc-num">02</span>
+        <h3 class="loc-name">Galle</h3>
+        <p class="loc-sub">Dutch colonial fort. UNESCO heritage, boutique culture, and ocean panoramas.</p>
+        <span class="loc-tag">2 properties →</span>
+      </div>
+      <div class="location-card">
+        <span class="loc-num">03</span>
+        <h3 class="loc-name">Ella</h3>
+        <p class="loc-sub">Highland mist. Tea country, hiking trails, and cool mountain air.</p>
+        <span class="loc-tag">2 properties →</span>
+      </div>
+      <div class="location-card">
+        <span class="loc-num">04</span>
+        <h3 class="loc-name">Negombo</h3>
+        <p class="loc-sub">West coast lagoon town. Seafood, Dutch canal, and proximity to the airport.</p>
+        <span class="loc-tag">3 properties →</span>
+      </div>
+      <div class="location-card">
+        <span class="loc-num">05</span>
+        <h3 class="loc-name">Colombo</h3>
+        <p class="loc-sub">The capital. Urban pulse, rooftop dining, and Pettah's vibrant market culture.</p>
+        <span class="loc-tag">2 properties →</span>
+      </div>
+      <div class="location-card location-cta">
+        <p>All properties are within 90 minutes of Bandaranaike International Airport.</p>
+        <a href="#contact" class="btn-primary">Plan your trip</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── AMENITIES ── -->
+  <section class="amenities-section" id="amenities">
+    <p class="section-label">What's included</p>
+    <h2 class="section-title">Every stay, thoughtfully<br>appointed</h2>
+    <div class="amenities-grid">
+      <div class="amenity">
+        <div class="amenity-rule"></div>
+        <h4 class="amenity-name">Private pool or ocean access</h4>
+        <p class="amenity-desc">All villas come with private or semi-private pool access.</p>
+      </div>
+      <div class="amenity">
+        <div class="amenity-rule"></div>
+        <h4 class="amenity-name">Daily housekeeping</h4>
+        <p class="amenity-desc">Professional cleaning and linen service every day.</p>
+      </div>
+      <div class="amenity">
+        <div class="amenity-rule"></div>
+        <h4 class="amenity-name">Chef on request</h4>
+        <p class="amenity-desc">Local chefs available to prepare Sri Lankan and international cuisine.</p>
+      </div>
+      <div class="amenity">
+        <div class="amenity-rule"></div>
+        <h4 class="amenity-name">Airport transfers</h4>
+        <p class="amenity-desc">Arranged pickup and drop-off with every booking.</p>
+      </div>
+      <div class="amenity">
+        <div class="amenity-rule"></div>
+        <h4 class="amenity-name">High-speed Wi-Fi</h4>
+        <p class="amenity-desc">Fibre connectivity throughout all properties.</p>
+      </div>
+      <div class="amenity">
+        <div class="amenity-rule"></div>
+        <h4 class="amenity-name">24/7 concierge</h4>
+        <p class="amenity-desc">On-call support for activities, dining reservations, and emergencies.</p>
+      </div>
+      <div class="amenity">
+        <div class="amenity-rule"></div>
+        <h4 class="amenity-name">Guided excursions</h4>
+        <p class="amenity-desc">Curated tours to temples, wildlife parks, and surf breaks.</p>
+      </div>
+      <div class="amenity">
+        <div class="amenity-rule"></div>
+        <h4 class="amenity-name">Flexible check-in</h4>
+        <p class="amenity-desc">Self check-in available. Early and late options on request.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="contact-inner">
+
+      <div class="contact-left">
+        <p class="section-label">Get in touch</p>
+        <h2 class="section-title">Questions about<br>a stay?</h2>
+        <div class="divider"></div>
+        <div class="contact-info">
+          <div class="contact-detail">
+            <strong>Email</strong>
+            <!-- REPLACE with your real email -->
+            <a href="mailto:hello@hiltonia.lk">hello@hiltonia.lk</a>
+          </div>
+          <div class="contact-detail">
+            <strong>WhatsApp</strong>
+            <!-- REPLACE with your real WhatsApp number -->
+            <a href="https://wa.me/94771234567" target="_blank" rel="noopener">+94 77 123 4567</a>
+          </div>
+          <div class="contact-detail">
+            <strong>Office</strong>
+            <span>Colombo 03, Western Province, Sri Lanka</span>
+          </div>
+          <p class="contact-hours">We typically respond within 2 hours<br>Monday – Sunday, 8am – 9pm (IST)</p>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contact-form">
+        <div class="contact-field">
+          <label for="cf-name">Your name</label>
+          <input type="text" id="cf-name" name="name" placeholder="Jane Smith" required />
+        </div>
+        <div class="contact-field">
+          <label for="cf-email">Email address</label>
+          <input type="email" id="cf-email" name="email" placeholder="jane@example.com" required />
+        </div>
+        <div class="contact-field">
+          <label for="cf-property">Interested in</label>
+          <select id="cf-property" name="property">
+            <option value="" disabled selected>Select a property</option>
+            <option>The Palm Residence — Mirissa</option>
+            <option>Galle Fort Loft</option>
+            <option>Ella Canopy Retreat</option>
+            <option>Negombo Sea Villa</option>
+            <option>Colombo Skyline Suite</option>
+            <option>General enquiry</option>
+          </select>
+        </div>
+        <div class="contact-field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" placeholder="Tell us your travel dates and any questions…" rows="4"></textarea>
+        </div>
+        <!--
+          TO MAKE THIS FORM WORK:
+          Option A — Formspree (free, easiest):
+            1. Go to https://formspree.io and create a free account
+            2. Create a form, copy your form endpoint e.g. https://formspree.io/f/xyzabcde
+            3. Change the <form> tag above to: <form action="https://formspree.io/f/xyzabcde" method="POST">
+            4. Remove the JS submit handler below for this form
+
+          Option B — EmailJS (sends directly from browser):
+            See https://www.emailjs.com/docs/
+
+          Option C — Backend (Node/PHP/Python):
+            POST to your own server endpoint
+        -->
+        <button type="submit" class="btn-primary contact-submit">Send enquiry</button>
+        <p class="form-status" id="form-status"></p>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <span class="footer-logo">Hiltonia</span>
+    <ul class="footer-links">
+      <li><a href="#properties">Properties</a></li>
+      <li><a href="#locations">Locations</a></li>
+      <li><a href="#amenities">Amenities</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <span class="footer-copy">© 2026 Hiltonia · Sri Lanka</span>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
