@@ -345,8 +345,13 @@ nav.scrolled .nav-burger span { background: var(--charcoal); }
 .prop-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
   gap: 3px;
+}
+
+/* Card 1 is large (spans 2 rows), cards 2-5 fill the right column then wrap */
+.prop-card.large {
+  grid-column: 1;
+  grid-row: 1 / span 2;
 }
 
 .prop-card {
@@ -531,7 +536,7 @@ nav.scrolled .nav-burger span { background: var(--charcoal); }
 
 .locations-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1px;
   background: var(--border-line);
   margin-top: 3rem;

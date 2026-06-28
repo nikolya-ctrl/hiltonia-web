@@ -50,7 +50,7 @@ if (bookingForm) {
     // ── OPTION A: mailto fallback (works without a backend) ──
     const subject = encodeURIComponent(`Booking enquiry — ${property}`);
     const body    = encodeURIComponent(
-      `Property: ${property}\nCheck-in: ${checkin}\nCheck-out: ${checkout}`
+      `Hi Hiltonia,\n\nProperty: ${property}\nCheck-in: ${checkin}\nCheck-out: ${checkout}\n\nPlease let me know availability.`
     );
     window.location.href = `mailto:hello@hiltonia.lk?subject=${subject}&body=${body}`;
 
