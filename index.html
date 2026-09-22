@@ -72,93 +72,9 @@
       <p class="properties-desc">Each property is selected for its architecture, location, and the quality of stillness it offers.</p>
     </div>
 
-    <div class="prop-grid">
-
-      <!-- ── CARD 1 (large, featured) ── -->
-      <article class="prop-card large">
-        <!--
-          Replace .prop-placeholder with:
-          <img src="images/nuwara-eliya-villa.jpg" alt="Nuwara Eliya Villa" class="prop-img" />
-        -->
-        <div class="prop-placeholder" style="background: linear-gradient(135deg,#1a3a2e,#2d5a46,#0d2018);"></div>
-        <div class="prop-badge">From $110 / night</div>
-        <div class="prop-overlay">
-          <span class="prop-type">Villa · 2 Bedrooms</span>
-          <h3 class="prop-name">Hill Country<br>Villa</h3>
-          <p class="prop-location">Nuwara Eliya, Central Province</p>
-          <a href="#booking" class="prop-link">Reserve →</a>
-        </div>
-      </article>
-
-      <!-- ── CARD 2 ── -->
-      <article class="prop-card">
-        <!--
-          Replace .prop-placeholder with:
-          <img src="images/nuwara-eliya-apt.jpg" alt="Nuwara Eliya Apartment" class="prop-img" />
-        -->
-        <div class="prop-placeholder" style="background: linear-gradient(135deg,#1e2e1e,#3a5a3a,#0a1a0a);"></div>
-        <div class="prop-badge">From $65 / night</div>
-        <div class="prop-overlay">
-          <span class="prop-type">Apartment · 2 Bedrooms</span>
-          <h3 class="prop-name">Tea Country<br>Apartment</h3>
-          <p class="prop-location">Nuwara Eliya, Central Province</p>
-          <a href="#booking" class="prop-link">Reserve →</a>
-        </div>
-      </article>
-
-      <!-- ── CARD 3 ── -->
-      <article class="prop-card">
-        <!--
-          Replace .prop-placeholder with:
-          <img src="images/mount-lavinia-apt.jpg" alt="Mount Lavinia Apartment" class="prop-img" />
-        -->
-        <div class="prop-placeholder" style="background: linear-gradient(135deg,#2a3a4a,#3d5a6e,#1a2a38);"></div>
-        <div class="prop-badge">From $55 / night</div>
-        <div class="prop-overlay">
-          <span class="prop-type">Apartment · 1 Bedroom</span>
-          <h3 class="prop-name">Mount Lavinia<br>Apartment</h3>
-          <p class="prop-location">Mount Lavinia, Western Province</p>
-          <a href="#booking" class="prop-link">Reserve →</a>
-        </div>
-      </article>
-
-      <!-- ── CARD 4 ── -->
-      <article class="prop-card">
-        <!--
-          Replace .prop-placeholder with:
-          <img src="images/talpe-apt.jpg" alt="Talpe Apartment" class="prop-img" />
-        -->
-        <div class="prop-placeholder" style="background: linear-gradient(135deg,#3a2a1a,#5a4a2e,#2a1a0a);"></div>
-        <div class="prop-badge">From $70 / night</div>
-        <div class="prop-overlay">
-          <span class="prop-type">Apartment · 1 Bedroom</span>
-          <h3 class="prop-name">Talpe Coastal<br>Apartment</h3>
-          <p class="prop-location">Talpe, Galle</p>
-          <a href="#booking" class="prop-link">Reserve →</a>
-        </div>
-      </article>
-
-      <!-- ── CARD 5 ── -->
-      <article class="prop-card">
-        <!--
-          Replace .prop-placeholder with:
-          <img src="images/negombo-house.jpg" alt="Negombo House" class="prop-img" />
-        -->
-        <div class="prop-placeholder" style="background: linear-gradient(135deg,#2a1a2e,#4a3a5a,#1a0a20);"></div>
-        <div class="prop-badge">From $60 / night</div>
-        <div class="prop-overlay">
-          <span class="prop-type">House · 2 Bedrooms</span>
-          <h3 class="prop-name">Negombo<br>House</h3>
-          <p class="prop-location">Negombo, Western Province</p>
-          <a href="#booking" class="prop-link">Reserve →</a>
-        </div>
-      </article>
-
-      <!--
-        ADD MORE CARDS by duplicating an <article class="prop-card"> block above.
-        For a featured tall card: add class="prop-card large"
-      -->
-
+    <!-- Populated by main.js from the properties table in Supabase -->
+    <div class="prop-grid" id="prop-grid">
+      <p class="properties-empty">Loading properties…</p>
     </div>
   </section>
 
@@ -175,11 +91,6 @@
             <label for="prop-select">Property</label>
             <select id="prop-select" name="property" required>
               <option value="" disabled selected>Select a property</option>
-              <option>Hill Country Villa — Nuwara Eliya</option>
-              <option>Tea Country Apartment — Nuwara Eliya</option>
-              <option>Mount Lavinia Apartment</option>
-              <option>Talpe Coastal Apartment — Galle</option>
-              <option>Negombo House</option>
             </select>
           </div>
           <div class="form-field">
@@ -190,9 +101,20 @@
             <label for="checkout">Check out</label>
             <input type="date" id="checkout" name="checkout" required />
           </div>
-          <button type="submit" class="form-btn">Check availability</button>
+          <button type="submit" class="form-btn">Book &amp; pay</button>
         </div>
-        <p class="booking-note">Instant confirmation · Free cancellation up to 48 hours before check-in</p>
+        <div class="form-row form-row-guest">
+          <div class="form-field">
+            <label for="guest-name">Your name</label>
+            <input type="text" id="guest-name" name="guestName" placeholder="Jane Smith" required />
+          </div>
+          <div class="form-field">
+            <label for="guest-email">Email</label>
+            <input type="email" id="guest-email" name="guestEmail" placeholder="jane@example.com" required />
+          </div>
+        </div>
+        <p class="booking-note">You'll be redirected to secure checkout · Free cancellation up to 48 hours before check-in</p>
+        <p class="form-status" id="booking-status"></p>
       </form>
     </div>
   </section>
@@ -321,13 +243,7 @@
         <div class="contact-field">
           <label for="cf-property">Interested in</label>
           <select id="cf-property" name="property">
-            <option value="" disabled selected>Select a property</option>
-            <option>Hill Country Villa — Nuwara Eliya</option>
-            <option>Tea Country Apartment — Nuwara Eliya</option>
-            <option>Mount Lavinia Apartment</option>
-            <option>Talpe Coastal Apartment — Galle</option>
-            <option>Negombo House</option>
-            <option>General enquiry</option>
+            <option value="" selected>General enquiry</option>
           </select>
         </div>
         <div class="contact-field">
@@ -364,6 +280,8 @@
     <span class="footer-copy">© 2026 Hiltonia · Sri Lanka</span>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="js/config.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hiltonia — Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body class="admin-body">
+
+  <!-- ── LOGIN ── -->
+  <section class="admin-login" id="admin-login">
+    <form class="admin-login-form" id="login-form">
+      <span class="footer-logo">Hiltonia</span>
+      <p class="section-label">Admin sign in</p>
+      <div class="contact-field">
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" required autocomplete="username" />
+      </div>
+      <div class="contact-field">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" required autocomplete="current-password" />
+      </div>
+      <button type="submit" class="btn-primary">Sign in</button>
+      <p class="form-status" id="login-status"></p>
+    </form>
+  </section>
+
+  <!-- ── DASHBOARD ── -->
+  <section class="admin-dashboard" id="admin-dashboard" hidden>
+    <header class="admin-header">
+      <span class="footer-logo">Hiltonia Admin</span>
+      <div class="admin-header-right">
+        <span id="admin-user-email"></span>
+        <button class="btn-outline" id="logout-btn">Sign out</button>
+      </div>
+    </header>
+
+    <div class="admin-tabs" role="tablist">
+      <button class="admin-tab active" data-tab="properties" role="tab">Properties</button>
+      <button class="admin-tab" data-tab="bookings" role="tab">Bookings</button>
+      <button class="admin-tab" data-tab="enquiries" role="tab">Enquiries</button>
+    </div>
+
+    <!-- PROPERTIES -->
+    <div class="admin-panel" id="panel-properties">
+      <div class="admin-panel-header">
+        <h2 class="section-title">Properties</h2>
+        <button class="btn-primary" id="new-property-btn">Add property</button>
+      </div>
+
+      <form class="admin-form" id="property-form" hidden>
+        <input type="hidden" id="pf-id" />
+        <div class="admin-form-grid">
+          <div class="contact-field">
+            <label for="pf-name">Name</label>
+            <input type="text" id="pf-name" required />
+          </div>
+          <div class="contact-field">
+            <label for="pf-slug">Slug</label>
+            <input type="text" id="pf-slug" required placeholder="e.g. hill-country-villa" />
+          </div>
+          <div class="contact-field">
+            <label for="pf-type">Type</label>
+            <select id="pf-type">
+              <option>Villa</option>
+              <option>Apartment</option>
+              <option>House</option>
+            </select>
+          </div>
+          <div class="contact-field">
+            <label for="pf-bedrooms">Bedrooms</label>
+            <input type="number" id="pf-bedrooms" min="1" value="1" required />
+          </div>
+          <div class="contact-field">
+            <label for="pf-location">Location</label>
+            <input type="text" id="pf-location" required />
+          </div>
+          <div class="contact-field">
+            <label for="pf-province">Province</label>
+            <input type="text" id="pf-province" required />
+          </div>
+          <div class="contact-field">
+            <label for="pf-price">Price / night (USD)</label>
+            <input type="number" id="pf-price" min="0" step="0.01" required />
+          </div>
+          <div class="contact-field">
+            <label for="pf-image">Photo</label>
+            <input type="file" id="pf-image" accept="image/*" />
+          </div>
+        </div>
+        <div class="contact-field">
+          <label for="pf-description">Description</label>
+          <textarea id="pf-description" rows="3"></textarea>
+        </div>
+        <div class="admin-form-checks">
+          <label><input type="checkbox" id="pf-featured" /> Featured (large card)</label>
+          <label><input type="checkbox" id="pf-active" checked /> Active (visible on site)</label>
+        </div>
+        <div class="admin-form-actions">
+          <button type="submit" class="btn-primary">Save property</button>
+          <button type="button" class="btn-outline" id="cancel-property-btn">Cancel</button>
+        </div>
+        <p class="form-status" id="property-form-status"></p>
+      </form>
+
+      <table class="admin-table" id="properties-table">
+        <thead>
+          <tr><th>Name</th><th>Location</th><th>Price/night</th><th>Active</th><th></th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- BOOKINGS -->
+    <div class="admin-panel" id="panel-bookings" hidden>
+      <div class="admin-panel-header">
+        <h2 class="section-title">Bookings</h2>
+      </div>
+      <table class="admin-table" id="bookings-table">
+        <thead>
+          <tr><th>Guest</th><th>Property</th><th>Dates</th><th>Total</th><th>Status</th><th></th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- ENQUIRIES -->
+    <div class="admin-panel" id="panel-enquiries" hidden>
+      <div class="admin-panel-header">
+        <h2 class="section-title">Enquiries</h2>
+      </div>
+      <table class="admin-table" id="enquiries-table">
+        <thead>
+          <tr><th>From</th><th>Property</th><th>Message</th><th>Status</th><th></th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="js/config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

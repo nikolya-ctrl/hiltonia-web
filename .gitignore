@@ -1,0 +1,9 @@
+node_modules/
+.env
+.env.local
+server/.env
+
+# Real project keys — copy js/config.example.js to js/config.js instead
+js/config.js
+
+.DS_Store
