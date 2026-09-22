@@ -521,10 +521,30 @@ nav.scrolled .nav-burger span { background: var(--charcoal); }
 }
 .form-btn:hover { background: var(--sand-hover); }
 
+.form-row-guest {
+  grid-template-columns: 1fr 1fr;
+  margin-top: 3px;
+}
+
 .booking-note {
   margin-top: 1.25rem;
   font-size: 0.75rem;
   color: rgba(247, 245, 242, 0.3);
+}
+
+.booking-form .form-status {
+  color: var(--sand);
+}
+.booking-form .form-status.error {
+  color: #e08080;
+}
+
+.properties-empty {
+  grid-column: 1 / -1;
+  padding: 3rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--mid);
 }
 
 /* ─────────────────────────────────────────
